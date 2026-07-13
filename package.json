@@ -1,0 +1,26 @@
+{
+  "name": "ai_test_first_repo",
+  "version": "1.0.0",
+  "description": "ai_test_first_repo",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test",
+    "test:headed": "npx playwright test --headed",
+    "test:debug": "npx playwright test --debug",
+    "test:report": "npx playwright show-report"       
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mosajssen/ai_test_first_repo.git"
+  },
+  "keywords": [],
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/mosajssen/ai_test_first_repo/issues"
+  },
+  "homepage": "https://github.com/mosajssen/ai_test_first_repo#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.61.1",
+    "@types/node": "^26.1.1"
+  }
+}
