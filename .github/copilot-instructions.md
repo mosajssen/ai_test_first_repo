@@ -14,6 +14,8 @@ Use [Conventional Commits](https://www.conventionalcommits.org/): `<type>[option
 
 ## Tests
 
+We use the [Playwright Test](https://playwright.dev/docs/test-intro) framework for all end-to-end tests. Before creating tests, review [playwright.config.ts](../playwright.config.ts) for the configured `baseURL`, timeouts, projects, and other settings.
+
 When creating Playwright tests, always annotate them with the tags defined in [test-plan.md](../test-plan.md).
 
 **Available tags:**
