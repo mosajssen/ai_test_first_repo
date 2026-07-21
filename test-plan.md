@@ -6,15 +6,16 @@ Source: http://localhost:3000/docs.html
 
 ## 1. Authentication
 
-| #   | Test Case                         | Steps                                             | Expected                                                  | Tags                  |
-| --- | --------------------------------- | ------------------------------------------------- | --------------------------------------------------------- | --------------------- |
-| 1.1 | Registration page loads           | Navigate to `/register.html`                      | Form with email and password fields is visible            | `@smoke` `@auth`      |
-| 1.2 | Successful registration           | Fill unique email + password, submit              | Account created, user redirected to `/profile.html`       | `@smoke` `@auth`      |
-| 1.3 | Duplicate email registration      | Register with existing email (`demo@example.com`) | Error message shown                                       | `@regression` `@auth` |
-| 1.4 | Successful login                  | Login with `demo@example.com` / `demo123`         | Redirected to `/profile.html`, `rolnopolToken` cookie set | `@smoke` `@auth`      |
-| 1.5 | Invalid credentials               | Login with wrong password                         | Error message shown, no redirect                          | `@regression` `@auth` |
-| 1.6 | Logout                            | Click logout after login                          | Session cleared, redirected away from profile             | `@smoke` `@auth`      |
-| 1.7 | Protected route — unauthenticated | Visit `/profile.html` without login               | Redirected to login page                                  | `@regression` `@auth` |
+| #   | Test Case                         | Steps                                             | Expected                                                          | Tags                  |
+| --- | --------------------------------- | ------------------------------------------------- | ----------------------------------------------------------------- | --------------------- |
+| 1.1 | Registration page loads           | Navigate to `/register.html`                      | Form with email and password fields is visible                    | `@smoke` `@auth`      |
+| 1.2 | Login page loads                  | Navigate to `/login.html`                         | Login form with subtitle "User Login & Account Access" is visible | `@smoke` `@auth`      |
+| 1.3 | Successful registration           | Fill unique email + password, submit              | Account created, user redirected to `/profile.html`               | `@smoke` `@auth`      |
+| 1.4 | Duplicate email registration      | Register with existing email (`demo@example.com`) | Error message shown                                               | `@regression` `@auth` |
+| 1.5 | Successful login                  | Login with `demo@example.com` / `demo123`         | Redirected to `/profile.html`, `rolnopolToken` cookie set         | `@smoke` `@auth`      |
+| 1.6 | Invalid credentials               | Login with wrong password                         | Error message shown, no redirect                                  | `@regression` `@auth` |
+| 1.7 | Logout                            | Click logout after login                          | Session cleared, redirected away from profile                     | `@smoke` `@auth`      |
+| 1.8 | Protected route — unauthenticated | Visit `/profile.html` without login               | Redirected to login page                                          | `@regression` `@auth` |
 
 ---
 
@@ -62,11 +63,11 @@ Source: http://localhost:3000/docs.html
 
 ## 5. System & Navigation
 
-| #   | Test Case              | Steps                       | Expected                         | Tags                        |
-| --- | ---------------------- | --------------------------- | -------------------------------- | --------------------------- |
-| 5.1 | Home page              | Navigate to `/`             | Page loads with title "Rolnopol" | `@smoke` `@navigation`      |
-| 5.2 | Documentation page     | Navigate to `/docs.html`    | Documentation content visible    | `@smoke` `@navigation`      |
-| 5.3 | API Explorer (Swagger) | Navigate to `/swagger.html` | Swagger UI loads                 | `@regression` `@navigation` |
+| #   | Test Case              | Steps                       | Expected                         | Tags                   |
+| --- | ---------------------- | --------------------------- | -------------------------------- | ---------------------- |
+| 5.1 | Home page              | Navigate to `/`             | Page loads with title "Rolnopol" | `@smoke` `@navigation` |
+| 5.2 | Documentation page     | Navigate to `/docs.html`    | Documentation content visible    | `@smoke` `@navigation` |
+| 5.3 | API Explorer (Swagger) | Navigate to `/swagger.html` | Swagger UI loads                 | `@smoke` `@navigation` |
 
 ---
 
