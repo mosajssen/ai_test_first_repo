@@ -34,3 +34,27 @@ test(
     );
   },
 );
+
+test(
+  "docs page is visible and loaded",
+  { tag: ["@smoke", "@navigation"] },
+  async ({ page }) => {
+    const expectedSubtitle = "Rolnopol System Guide & API Reference";
+
+    await page.goto("/docs.html");
+    await expect(page.locator(".docs-header-subtitle")).toHaveText(
+      expectedSubtitle,
+    );
+  },
+);
+
+test(
+  "swagger page is visible and loaded",
+  { tag: ["@smoke", "@navigation"] },
+  async ({ page }) => {
+    const expectedTitle = "Rolnopol - Swagger";
+
+    await page.goto("/swagger.html");
+    await expect(page).toHaveTitle(expectedTitle);
+  },
+);
