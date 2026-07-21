@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { RegisterPage } from "../src/pages/RegisterPage";
 
 test(
   "should have correct page title 'Rolnopol'",
@@ -17,19 +18,6 @@ test(
 
     await page.goto("/login.html");
     await expect(page.getByTestId("login-subtitle")).toHaveText(
-      expectedSubtitle,
-    );
-  },
-);
-
-test(
-  "register page is visible and loaded",
-  { tag: ["@smoke", "@auth"] },
-  async ({ page }) => {
-    const expectedSubtitle = "Create Your User Account";
-
-    await page.goto("/register.html");
-    await expect(page.getByTestId("register-subtitle")).toHaveText(
       expectedSubtitle,
     );
   },
@@ -60,15 +48,25 @@ test(
 );
 
 test(
+  "register page is visible and loaded",
+  { tag: ["@smoke", "@auth"] },
+  async ({ page }) => {
+    const registerPage = new RegisterPage(page);
+
+    await registerPage.goto();
+    await expect(registerPage.subtitle).toHaveText("Create Your User Account");
+  },
+);
+
+test(
   "successful registration redirects to login page",
   { tag: ["@smoke", "@auth"] },
   async ({ page }) => {
     const uniqueEmail = `testuser_${Date.now()}@example.com`;
+    const registerPage = new RegisterPage(page);
 
-    await page.goto("/register.html");
-    await page.getByTestId("email-input").fill(uniqueEmail);
-    await page.getByTestId("password-input").fill("Test1234!");
-    await page.getByTestId("register-submit-btn").click();
+    await registerPage.goto();
+    await registerPage.register(uniqueEmail, "Test1234!");
 
     await expect(page.getByRole("alert")).toContainText(
       "Registration successful!",
