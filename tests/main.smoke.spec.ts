@@ -58,3 +58,21 @@ test(
     await expect(page).toHaveTitle(expectedTitle);
   },
 );
+
+test(
+  "successful registration redirects to login page",
+  { tag: ["@smoke", "@auth"] },
+  async ({ page }) => {
+    const uniqueEmail = `testuser_${Date.now()}@example.com`;
+
+    await page.goto("/register.html");
+    await page.getByTestId("email-input").fill(uniqueEmail);
+    await page.getByTestId("password-input").fill("Test1234!");
+    await page.getByTestId("register-submit-btn").click();
+
+    await expect(page.getByRole("alert")).toContainText(
+      "Registration successful!",
+    );
+    await expect(page).toHaveURL(/login\.html/, { timeout: 10_000 });
+  },
+);
