@@ -38,9 +38,9 @@ When creating Playwright tests, always annotate them with the tags defined in [t
 
 ### Form submission with redirect
 
-For tests that fill a form, expect a success notification, and assert a redirect:
+1. Use `Date.now()` for unique values (e.g. emails) to avoid state conflicts between runs
+2. Prefer `getByRole` or `getByLabel` in test files; use `getByTestId` when explicit test IDs are present
+3. After submitting, assert the success `alert` role before asserting the URL change
+4. Use `{ timeout: 10_000 }` on `toHaveURL` to account for redirect delay after a notification
 
-1. Use `Date.now()` to generate unique data (e.g. emails) and avoid state conflicts between runs
-2. Use the best available locator: prefer `getByRole` or `getByLabel`, fall back to `getByTestId` when explicit test IDs are present
-3. After submitting, first assert the success `alert` role, then assert the URL change
-4. Use `{ timeout: 10_000 }` on `toHaveURL` to account for redirect delay after notification
+For coding conventions, follow [CODING_STANDARDS.md](../CODING_STANDARDS.md).
