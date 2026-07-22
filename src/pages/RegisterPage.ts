@@ -1,7 +1,8 @@
 import { Page } from "@playwright/test";
+import { BasePage } from "./BasePage";
 
-export class RegisterPage {
-  readonly page: Page;
+export class RegisterPage extends BasePage {
+  static readonly URL = "/register.html";
   readonly subtitle;
   readonly emailInput;
   readonly displayNameInput;
@@ -12,7 +13,7 @@ export class RegisterPage {
   readonly successNotification;
 
   constructor(page: Page) {
-    this.page = page;
+    super(page, RegisterPage.URL);
 
     this.subtitle = page.getByTestId("register-subtitle");
 
@@ -26,10 +27,6 @@ export class RegisterPage {
     this.backToHomeLink = page.getByRole("link", { name: "Back to Home" });
 
     this.successNotification = page.getByRole("alert");
-  }
-
-  async goto() {
-    await this.page.goto("/register.html");
   }
 
   async fillEmail(email: string) {
