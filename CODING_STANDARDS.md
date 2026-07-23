@@ -21,3 +21,11 @@ await registerPage.register(email, password);
 await expect(page.getByRole("alert")).toContainText("Registration successful!");
 await expect(page).toHaveURL(/login\.html/, { timeout: 10_000 });
 ```
+
+## Comments
+
+- Do not add comments to code — write self-documenting code instead
+- No inline comments explaining what the code does
+- No block comments or file-level header comments
+- No commented-out code — delete it instead
+- Comments in code examples within this document (e.g. `// Page Object — actions only`) are permitted for illustrative purposes only

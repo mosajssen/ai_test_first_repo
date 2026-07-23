@@ -1,8 +1,9 @@
 import { Page } from "@playwright/test";
+import { URLs } from "../urls";
 import { BasePage } from "./BasePage";
 
 export class RegisterPage extends BasePage {
-  static readonly URL = "/register.html";
+  static readonly URL = URLs.register;
   readonly subtitle;
   readonly emailInput;
   readonly displayNameInput;

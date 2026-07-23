@@ -1,8 +1,9 @@
 import { Page } from "@playwright/test";
+import { URLs } from "../urls";
 import { BasePage } from "./BasePage";
 
 export class DocsPage extends BasePage {
-  static readonly URL = "/docs.html";
+  static readonly URL = URLs.docs;
   readonly subtitle;
 
   constructor(page: Page) {
