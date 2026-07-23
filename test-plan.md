@@ -6,16 +6,19 @@ Source: http://localhost:3000/docs.html
 
 ## 1. Authentication
 
-| #   | Test Case                         | Steps                                             | Expected                                                          | Tags                  |
-| --- | --------------------------------- | ------------------------------------------------- | ----------------------------------------------------------------- | --------------------- |
-| 1.1 | Registration page loads           | Navigate to `/register.html`                      | Form with email and password fields is visible                    | `@smoke` `@auth`      |
-| 1.2 | Login page loads                  | Navigate to `/login.html`                         | Login form with subtitle "User Login & Account Access" is visible | `@smoke` `@auth`      |
-| 1.3 | Successful registration           | Fill unique email + password, submit              | Account created, user redirected to `/login.html`                 | `@smoke` `@auth`      |
-| 1.4 | Duplicate email registration      | Register with existing email (`demo@example.com`) | Error message shown                                               | `@regression` `@auth` |
-| 1.5 | Successful login                  | Login with `demo@example.com` / `demo123`         | Redirected to `/profile.html`, `rolnopolToken` cookie set         | `@smoke` `@auth`      |
-| 1.6 | Invalid credentials               | Login with wrong password                         | Error message shown, no redirect                                  | `@regression` `@auth` |
-| 1.7 | Logout                            | Click logout after login                          | Session cleared, redirected away from profile                     | `@smoke` `@auth`      |
-| 1.8 | Protected route — unauthenticated | Visit `/profile.html` without login               | Redirected to login page                                          | `@regression` `@auth` |
+| #    | Test Case                               | Steps                                     | Expected                                 | Tags              |
+| ---- | --------------------------------------- | ----------------------------------------- | ---------------------------------------- | ----------------- |
+| 1.1  | Registration page loads                 | Navigate to `/register.html`              | Email and password form is visible       | @smoke @auth      |
+| 1.2  | Login page loads                        | Navigate to `/login.html`                 | Login form with correct subtitle visible | @smoke @auth      |
+| 1.3  | Successful registration                 | Fill unique email + password, submit      | Redirected to `/login.html`              | @smoke @auth      |
+| 1.4  | Successful login                        | Login with `demo@example.com` / `demo123` | Redirected to `/profile.html`            | @smoke @auth      |
+| 1.5  | Logout                                  | Click logout after login                  | Session cleared, user redirected         | @smoke @auth      |
+| 1.6  | Duplicate email registration            | Submit with existing email                | Error: email already exists              | @regression @auth |
+| 1.7  | Invalid credentials                     | Login with wrong password                 | Error message shown, no redirect         | @regression @auth |
+| 1.8  | Protected route — unauthenticated       | Visit `/profile.html` without login       | Redirected to login page                 | @regression @auth |
+| 1.9  | Registration with invalid email         | Submit with invalid email format          | Inline validation error shown            | @regression @auth |
+| 1.10 | Registration with short password        | Submit with 2-char password               | Inline validation error shown            | @regression @auth |
+| 1.11 | Registration with empty required fields | Submit empty form                         | Form not submitted, email field focused  | @regression @auth |
 
 ---
 
