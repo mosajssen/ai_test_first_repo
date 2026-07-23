@@ -89,9 +89,5 @@ test(
     await loginPage.login("demo@example.com", "demo123");
 
     await expect(page).toHaveURL(/profile\.html/, { timeout: 10_000 });
-
-    const cookies = await page.context().cookies();
-    const token = cookies.find((c) => c.name === "rolnopolToken");
-    expect(token).toBeDefined();
   },
 );

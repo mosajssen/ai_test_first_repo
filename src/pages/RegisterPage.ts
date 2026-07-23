@@ -1,17 +1,17 @@
-import { Page } from "@playwright/test";
+import { Locator, Page } from "@playwright/test";
 import { URLs } from "../urls";
 import { BasePage } from "./BasePage";
 
 export class RegisterPage extends BasePage {
   static readonly URL = URLs.register;
-  readonly subtitle;
-  readonly emailInput;
-  readonly displayNameInput;
-  readonly passwordInput;
-  readonly submitButton;
-  readonly loginLink;
-  readonly backToHomeLink;
-  readonly successNotification;
+  readonly subtitle: Locator;
+  readonly emailInput: Locator;
+  readonly displayNameInput: Locator;
+  readonly passwordInput: Locator;
+  readonly submitButton: Locator;
+  readonly loginLink: Locator;
+  readonly backToHomeLink: Locator;
+  readonly successNotification: Locator;
 
   constructor(page: Page) {
     super(page, RegisterPage.URL);
