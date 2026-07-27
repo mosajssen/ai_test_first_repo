@@ -1,9 +1,10 @@
 {
-    "recommendations": [
-        "ms-playwright.playwright",
-        "esbenp.prettier-vscode",
-        "dbaeumer.vscode-eslint",
-        "PKief.material-icon-theme",
-        "streetsidesoftware.code-spell-checker"
-    ]
+  "recommendations": [
+    "ms-playwright.playwright",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "PKief.material-icon-theme",
+    "streetsidesoftware.code-spell-checker",
+    "GitHub.vscode-pull-request-github"
+  ]
 }
