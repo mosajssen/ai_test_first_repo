@@ -1,9 +1,7 @@
 name: E2E Tests
 
 on:
-  push:
-    branches:
-      - ci/github-actions-setup
+  pull_request:
 
 jobs:
   playwright-tests:
