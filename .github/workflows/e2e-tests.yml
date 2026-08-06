@@ -13,6 +13,7 @@ concurrency:
 jobs:
   playwright-tests:
     runs-on: ubuntu-latest
+    environment: dev
     services:
       rolnopol:
         image: jaktestowac/rolnopol:latest
@@ -51,9 +52,11 @@ jobs:
         run: npx playwright install-deps chromium
 
       - name: Wait for rolnopol service to be ready
+        env:
+          BASE_URL: ${{ vars.BASE_URL }}
         run: |
           for i in $(seq 1 30); do
-            if curl -sf http://localhost:3000 > /dev/null; then
+            if curl -sf "$BASE_URL" > /dev/null; then
               echo "Service is up"
               exit 0
             fi
@@ -64,6 +67,8 @@ jobs:
           exit 1
 
       - name: Run Playwright tests
+        env:
+          BASE_URL: ${{ vars.BASE_URL }}
         run: npm test
 
       - name: Upload Playwright report
