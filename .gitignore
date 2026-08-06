@@ -8,6 +8,9 @@ node_modules/
 /playwright/.auth/
 /.playwright-mcp/
 playwright-report-ci/
+.env
+.env.*
+!.env.example
 
 # AI temp scratch space
 /.ai-temp/*
