@@ -8,3 +8,7 @@ node_modules/
 /playwright/.auth/
 /.playwright-mcp/
 playwright-report-ci/
+
+# AI temp scratch space
+/.ai-temp/*
+!/.ai-temp/.gitkeep
