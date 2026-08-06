@@ -94,7 +94,7 @@ test(
 );
 
 test(
-  "empty user can log in, view profile sections, and log out from the application",
+  "empty user can log in, view profile sections, and log out from Rolnopol",
   { tag: ["@smoke", "@auth"] },
   async ({ page }) => {
     const loginPage = new LoginPage(page);
