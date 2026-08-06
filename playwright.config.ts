@@ -1,4 +1,11 @@
 import { defineConfig, devices } from "@playwright/test";
+import "dotenv/config";
+
+if (!process.env.BASE_URL) {
+  throw new Error(
+    "Missing BASE_URL. Define it in .env or environment variables.",
+  );
+}
 
 export default defineConfig({
   testDir: "./tests",
@@ -8,7 +15,7 @@ export default defineConfig({
     ? [["github"], ["html"]]
     : [["html", { open: "never" }]],
   use: {
-    baseURL: "http://localhost:3000",
+    baseURL: process.env.BASE_URL,
     trace: "retain-on-failure",
   },
 
