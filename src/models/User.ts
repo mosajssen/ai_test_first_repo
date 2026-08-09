@@ -1,3 +1,5 @@
+import { env } from "../env";
+
 export interface User {
   email: string;
   password: string;
@@ -5,16 +7,16 @@ export interface User {
 
 export function createUser(overrides: Partial<User> = {}): User {
   return {
-    email: process.env.DEMO_USER_EMAIL || "demo@example.com",
-    password: process.env.DEMO_USER_PASSWORD || "demo123",
+    email: env.DEMO_USER_EMAIL,
+    password: env.DEMO_USER_PASSWORD,
     ...overrides,
   };
 }
 
 export function createEmptyUser(overrides: Partial<User> = {}): User {
   return createUser({
-    email: process.env.EMPTY_USER_EMAIL || "emptyuser@rolnopol.demo.pl",
-    password: process.env.EMPTY_USER_PASSWORD || "demoPass123",
+    email: env.EMPTY_USER_EMAIL,
+    password: env.EMPTY_USER_PASSWORD,
     ...overrides,
   });
 }
@@ -22,7 +24,7 @@ export function createEmptyUser(overrides: Partial<User> = {}): User {
 export function createUniqueUser(overrides: Partial<User> = {}): User {
   return createUser({
     email: `testuser_${Date.now()}@example.com`,
-    password: process.env.NEW_USER_PASSWORD || "Test1234!",
+    password: env.NEW_USER_PASSWORD,
     ...overrides,
   });
 }
