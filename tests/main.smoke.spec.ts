@@ -1,4 +1,9 @@
 import { expect, test } from "@playwright/test";
+import {
+  createEmptyUser,
+  createUniqueUser,
+  createUser,
+} from "../src/models/User";
 import { DocsPage } from "../src/pages/DocsPage";
 import { HomePage } from "../src/pages/HomePage";
 import { LoginPage } from "../src/pages/LoginPage";
@@ -67,11 +72,11 @@ test(
   "successful registration redirects to login page",
   { tag: ["@smoke", "@auth"] },
   async ({ page }) => {
-    const uniqueEmail = `testuser_${Date.now()}@example.com`;
+    const user = createUniqueUser();
     const registerPage = new RegisterPage(page);
 
     await registerPage.goto();
-    await registerPage.register(uniqueEmail, "Test1234!");
+    await registerPage.register(user.email, user.password);
 
     await expect(page.getByRole("alert")).toContainText(
       "Registration successful!",
@@ -84,10 +89,11 @@ test(
   "successful login redirects to profile and sets auth cookie",
   { tag: ["@smoke", "@auth"] },
   async ({ page }) => {
+    const user = createUser();
     const loginPage = new LoginPage(page);
 
     await loginPage.goto();
-    await loginPage.login("demo@example.com", "demo123");
+    await loginPage.login(user.email, user.password);
 
     await expect(page).toHaveURL(/profile\.html/, { timeout: 10_000 });
   },
@@ -97,11 +103,12 @@ test(
   "empty user can log in, view profile sections, and log out from app (final change)",
   { tag: ["@smoke", "@auth"] },
   async ({ page }) => {
+    const user = createEmptyUser();
     const loginPage = new LoginPage(page);
     const profilePage = new ProfilePage(page);
 
     await loginPage.goto();
-    await loginPage.login("emptyuser@rolnopol.demo.pl", "demoPass123");
+    await loginPage.login(user.email, user.password);
 
     await expect.soft(page).toHaveURL(profilePage.url, { timeout: 10_000 });
     await expect.soft(profilePage.profileInformationHeading).toBeVisible();
