@@ -22,7 +22,7 @@ export function createEmptyUser(overrides: Partial<User> = {}): User {
 export function createUniqueUser(overrides: Partial<User> = {}): User {
   return createUser({
     email: `testuser_${Date.now()}@example.com`,
-    password: process.env.NEW_USER_PASSWORD || "demoPass123",
+    password: process.env.NEW_USER_PASSWORD || "Test1234!",
     ...overrides,
   });
 }
