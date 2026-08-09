@@ -128,7 +128,7 @@ test(
 );
 
 test(
-  "farm dashboard lists fields, staff, and animals after login",
+  "farm dashboard lists fields, staff, and animals after login test",
   { tag: ["@smoke", "@farm"] },
   async ({ page }) => {
     const user = createUser();
