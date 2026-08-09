@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { createUser } from "../src/models/User";
 import { RegisterPage } from "../src/pages/RegisterPage";
 
 test.describe("registration — negative scenarios", () => {
@@ -6,10 +7,11 @@ test.describe("registration — negative scenarios", () => {
     "duplicate email shows error",
     { tag: ["@regression", "@auth"] },
     async ({ page }) => {
+      const user = createUser();
       const registerPage = new RegisterPage(page);
 
       await registerPage.goto();
-      await registerPage.register("demo@example.com", "demo123");
+      await registerPage.register(user.email, user.password);
 
       await expect(page.getByRole("alert")).toContainText(
         "User with this email already exists",
