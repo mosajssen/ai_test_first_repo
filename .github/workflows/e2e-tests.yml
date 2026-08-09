@@ -72,6 +72,9 @@ jobs:
           BASE_URL: ${{ vars.BASE_URL }}
           DEMO_USER_EMAIL: ${{ secrets.DEMO_USER_EMAIL }}
           DEMO_USER_PASSWORD: ${{ secrets.DEMO_USER_PASSWORD }}
+          EMPTY_USER_EMAIL: ${{ secrets.EMPTY_USER_EMAIL }}
+          EMPTY_USER_PASSWORD: ${{ secrets.EMPTY_USER_PASSWORD }}
+          NEW_USER_PASSWORD: ${{ secrets.NEW_USER_PASSWORD }}
         run: npm test
 
       - name: Upload Playwright report
