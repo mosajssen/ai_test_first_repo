@@ -9,6 +9,7 @@ import { HomePage } from "../src/pages/HomePage";
 import { LoginPage } from "../src/pages/LoginPage";
 import { ProfilePage } from "../src/pages/ProfilePage";
 import { RegisterPage } from "../src/pages/RegisterPage";
+import { StaffFieldsPage } from "../src/pages/StaffFieldsPage";
 import { SwaggerPage } from "../src/pages/SwaggerPage";
 
 test(
@@ -114,9 +115,37 @@ test(
     await expect.soft(profilePage.profileInformationHeading).toBeVisible();
     await expect.soft(profilePage.updateProfileHeading).toBeVisible();
     await expect.soft(profilePage.dangerZoneHeading).toBeVisible();
+    await expect.soft(profilePage.emailValue).toHaveText(user.email);
+    await expect.soft(profilePage.displayedNameValue).not.toBeEmpty();
+    await expect.soft(profilePage.userIdValue).not.toBeEmpty();
+    await expect.soft(profilePage.createdAtValue).not.toBeEmpty();
+    await expect.soft(profilePage.lastLoginValue).not.toBeEmpty();
 
     await profilePage.logout();
 
     await expect(page).toHaveURL(LoginPage.URL, { timeout: 10_000 });
+  },
+);
+
+test(
+  "farm dashboard lists fields, staff, and animals after login",
+  { tag: ["@smoke", "@farm"] },
+  async ({ page }) => {
+    const user = createUser();
+    const loginPage = new LoginPage(page);
+    const profilePage = new ProfilePage(page);
+    const staffFieldsPage = new StaffFieldsPage(page);
+
+    await loginPage.goto();
+    await loginPage.login(user.email, user.password);
+
+    await expect.soft(page).toHaveURL(profilePage.url, { timeout: 10_000 });
+
+    await profilePage.goToStaffFieldsManagement();
+
+    await expect(page).toHaveURL(staffFieldsPage.url, { timeout: 10_000 });
+    await expect.soft(staffFieldsPage.fieldsHeading).toBeVisible();
+    await expect.soft(staffFieldsPage.staffHeading).toBeVisible();
+    await expect.soft(staffFieldsPage.animalsHeading).toBeVisible();
   },
 );

@@ -88,6 +88,10 @@ For UI tests:
 - Use Page Objects pattern.
 - Use stable locator strategies (role, label, text) whenever possible.
 - Avoid sleeps and magic timeouts.
+- Use soft assertions (`expect.soft()`) where appropriate:
+  - For independent, non-blocking checks within the same test (e.g. verifying multiple pieces of UI state or several fields on a page) so all failures are reported together instead of stopping at the first one.
+  - Do not use soft assertions for checks that gate subsequent steps (e.g. confirming navigation succeeded, an element is visible before interacting with it, or a login succeeded) — use a regular (hard) `expect` there, since later steps would fail anyway if the precondition is false.
+  - When soft assertions are used, ensure the test still fails overall (Playwright does this automatically at the end of the test).
 - Reflect implementation progress in the plan.
 
 ### 6. Run regression tests (mandatory)
@@ -108,6 +112,7 @@ Before finishing, verify:
 
 - Tests include correct tags.
 - Assertions verify user-observable behavior.
+- Soft assertions are used only for independent checks, not for preconditions of later steps.
 - No duplicated selectors or logic outside Page Objects.
 - Code style matches existing tests.
 - Update the plan with validation results.
