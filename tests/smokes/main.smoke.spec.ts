@@ -1,11 +1,11 @@
 import { expect, test } from "@playwright/test";
-import { createEmptyUser, createUniqueUser } from "../src/models/User";
-import { DocsPage } from "../src/pages/DocsPage";
-import { HomePage } from "../src/pages/HomePage";
-import { LoginPage } from "../src/pages/LoginPage";
-import { ProfilePage } from "../src/pages/ProfilePage";
-import { RegisterPage } from "../src/pages/RegisterPage";
-import { SwaggerPage } from "../src/pages/SwaggerPage";
+import { createEmptyUser, createUniqueUser } from "../../src/models/User";
+import { DocsPage } from "../../src/pages/DocsPage";
+import { HomePage } from "../../src/pages/HomePage";
+import { LoginPage } from "../../src/pages/LoginPage";
+import { ProfilePage } from "../../src/pages/ProfilePage";
+import { RegisterPage } from "../../src/pages/RegisterPage";
+import { SwaggerPage } from "../../src/pages/SwaggerPage";
 
 test(
   "should have correct page title 'Rolnopol'",

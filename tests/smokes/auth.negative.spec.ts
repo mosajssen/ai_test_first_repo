@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
-import { createUser } from "../src/models/User";
-import { RegisterPage } from "../src/pages/RegisterPage";
+import { createUser } from "../../src/models/User";
+import { RegisterPage } from "../../src/pages/RegisterPage";
 
 test.describe("registration — negative scenarios", () => {
   test(
