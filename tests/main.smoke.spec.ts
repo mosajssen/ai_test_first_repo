@@ -1,15 +1,10 @@
 import { expect, test } from "@playwright/test";
-import {
-  createEmptyUser,
-  createUniqueUser,
-  createUser,
-} from "../src/models/User";
+import { createEmptyUser, createUniqueUser } from "../src/models/User";
 import { DocsPage } from "../src/pages/DocsPage";
 import { HomePage } from "../src/pages/HomePage";
 import { LoginPage } from "../src/pages/LoginPage";
 import { ProfilePage } from "../src/pages/ProfilePage";
 import { RegisterPage } from "../src/pages/RegisterPage";
-import { StaffFieldsPage } from "../src/pages/StaffFieldsPage";
 import { SwaggerPage } from "../src/pages/SwaggerPage";
 
 test(
@@ -87,20 +82,6 @@ test(
 );
 
 test(
-  "successful login redirects to profile and sets auth cookie",
-  { tag: ["@smoke", "@auth"] },
-  async ({ page }) => {
-    const user = createUser();
-    const loginPage = new LoginPage(page);
-
-    await loginPage.goto();
-    await loginPage.login(user.email, user.password);
-
-    await expect(page).toHaveURL(/profile\.html/, { timeout: 10_000 });
-  },
-);
-
-test(
   "empty user can log in, view profile sections, and log out from app (final change)",
   { tag: ["@smoke", "@auth"] },
   async ({ page }) => {
@@ -124,28 +105,5 @@ test(
     await profilePage.logout();
 
     await expect(page).toHaveURL(LoginPage.URL, { timeout: 10_000 });
-  },
-);
-
-test(
-  "farm dashboard lists fields, staff, and animals after login test",
-  { tag: ["@smoke", "@farm"] },
-  async ({ page }) => {
-    const user = createUser();
-    const loginPage = new LoginPage(page);
-    const profilePage = new ProfilePage(page);
-    const staffFieldsPage = new StaffFieldsPage(page);
-
-    await loginPage.goto();
-    await loginPage.login(user.email, user.password);
-
-    await expect.soft(page).toHaveURL(profilePage.url, { timeout: 10_000 });
-
-    await profilePage.goToStaffFieldsManagement();
-
-    await expect(page).toHaveURL(staffFieldsPage.url, { timeout: 10_000 });
-    await expect.soft(staffFieldsPage.fieldsHeading).toBeVisible();
-    await expect.soft(staffFieldsPage.staffHeading).toBeVisible();
-    await expect.soft(staffFieldsPage.animalsHeading).toBeVisible();
   },
 );

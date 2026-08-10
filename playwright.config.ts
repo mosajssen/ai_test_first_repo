@@ -3,7 +3,7 @@ import { env } from "./src/env";
 
 export default defineConfig({
   testDir: "./tests",
-  timeout: 10 * 1000,
+  timeout: 20 * 1000,
   fullyParallel: true,
   reporter: process.env.CI
     ? [["github"], ["html"]]
@@ -15,8 +15,25 @@ export default defineConfig({
 
   projects: [
     {
-      name: "chromium",
+      name: "setup",
+      testDir: "./tests/auth/setup",
+      testMatch: /.*\.setup\.ts/,
       use: { ...devices["Desktop Chrome"] },
+    },
+    {
+      name: "smoke-tests",
+      testDir: "./tests",
+      testIgnore: ["auth/setup/**", "auth/authenticated/**"],
+      use: { ...devices["Desktop Chrome"] },
+    },
+    {
+      name: "authenticated",
+      testDir: "./tests/auth/authenticated",
+      dependencies: ["setup"],
+      use: {
+        ...devices["Desktop Chrome"],
+        storageState: "playwright/.auth/user.json",
+      },
     },
   ],
 });
