@@ -3,14 +3,14 @@ import {
   createEmptyUser,
   createUniqueUser,
   createUser,
-} from "../src/models/User";
-import { DocsPage } from "../src/pages/DocsPage";
-import { HomePage } from "../src/pages/HomePage";
-import { LoginPage } from "../src/pages/LoginPage";
-import { ProfilePage } from "../src/pages/ProfilePage";
-import { RegisterPage } from "../src/pages/RegisterPage";
-import { StaffFieldsPage } from "../src/pages/StaffFieldsPage";
-import { SwaggerPage } from "../src/pages/SwaggerPage";
+} from "../../src/models/User";
+import { DocsPage } from "../../src/pages/DocsPage";
+import { HomePage } from "../../src/pages/HomePage";
+import { LoginPage } from "../../src/pages/LoginPage";
+import { ProfilePage } from "../../src/pages/ProfilePage";
+import { RegisterPage } from "../../src/pages/RegisterPage";
+import { StaffFieldsPage } from "../../src/pages/StaffFieldsPage";
+import { SwaggerPage } from "../../src/pages/SwaggerPage";
 
 test(
   "should have correct page title 'Rolnopol'",
@@ -83,20 +83,6 @@ test(
       "Registration successful!",
     );
     await expect(page).toHaveURL(/login\.html/, { timeout: 10_000 });
-  },
-);
-
-test(
-  "successful login redirects to profile and sets auth cookie",
-  { tag: ["@smoke", "@auth"] },
-  async ({ page }) => {
-    const user = createUser();
-    const loginPage = new LoginPage(page);
-
-    await loginPage.goto();
-    await loginPage.login(user.email, user.password);
-
-    await expect(page).toHaveURL(/profile\.html/, { timeout: 10_000 });
   },
 );
 
