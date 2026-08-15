@@ -14,6 +14,13 @@ export class StaffFieldsPage extends BasePage {
   readonly submitAddFieldButton: Locator;
   readonly fieldAddedMessage: Locator;
   readonly searchFieldsInput: Locator;
+  readonly addAnimalButton: Locator;
+  readonly addAnimalModalHeading: Locator;
+  readonly addAnimalModal: Locator;
+  readonly animalTypeSelect: Locator;
+  readonly animalAmountInput: Locator;
+  readonly submitAddAnimalButton: Locator;
+  readonly searchAnimalsInput: Locator;
 
   constructor(page: Page) {
     super(page, StaffFieldsPage.URL);
@@ -27,18 +34,33 @@ export class StaffFieldsPage extends BasePage {
       name: "Animals (groups)",
       level: 3,
     });
-    this.addFieldButton = page
-      .getByRole("button", { name: "+ Add Field" })
-      .first();
+    this.addFieldButton = page.locator("#openAddFieldModal");
     this.addFieldModalHeading = page.getByRole("heading", { name: "Add Field" });
     this.fieldNameInput = page.getByRole("textbox", { name: "Field Name" });
     this.fieldAreaInput = page.getByRole("spinbutton", { name: "Area (ha)" });
     this.submitAddFieldButton = page
       .locator("#addFieldForm")
-      .getByRole("button", { name: "+ Add Field" });
+      .getByRole("button", { name: "Add Field" });
     this.fieldAddedMessage = page.getByText("Field added!");
     this.searchFieldsInput = page.getByRole("textbox", {
       name: "Search fields...",
+    });
+    this.addAnimalButton = page.locator("#openAddAnimalModal");
+    this.addAnimalModalHeading = page.getByRole("heading", {
+      name: "Add Animal",
+    });
+    this.addAnimalModal = page.locator("#addAnimalModal");
+    this.animalTypeSelect = page
+      .locator("#addAnimalForm")
+      .locator("#animalType");
+    this.animalAmountInput = page
+      .locator("#addAnimalForm")
+      .getByRole("spinbutton", { name: "Amount" });
+    this.submitAddAnimalButton = page
+      .locator("#addAnimalForm")
+      .getByRole("button", { name: "Add Animal" });
+    this.searchAnimalsInput = page.getByRole("textbox", {
+      name: "Search animals...",
     });
   }
 
@@ -59,6 +81,28 @@ export class StaffFieldsPage extends BasePage {
   fieldListItem(name: string) {
     return this.page.locator("li").filter({
       has: this.page.getByText(name, { exact: true }),
+    });
+  }
+
+  async openAddAnimalModal() {
+    await this.addAnimalButton.click();
+  }
+
+  async addAnimal(type: string, amount: number) {
+    await this.animalTypeSelect.selectOption(type);
+    await this.animalAmountInput.fill(amount.toString());
+    await this.submitAddAnimalButton.click();
+  }
+
+  async searchAnimalByType(type: string) {
+    await this.searchAnimalsInput.fill(type);
+  }
+
+  animalListItem(type: string, amount: number) {
+    return this.page.locator("#animalsList li").filter({
+      has: this.page.getByText(type, { exact: true }),
+    }).filter({
+      hasText: amount.toString(),
     });
   }
 }
