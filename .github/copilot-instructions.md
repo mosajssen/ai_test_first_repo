@@ -17,6 +17,23 @@ Use [Conventional Commits](https://www.conventionalcommits.org/): `<type>[option
 - Max 72 characters, no capital first letter, no trailing period
 - Use `!` for breaking changes: `feat!: remove deprecated API`
 
+## Local Skills Index
+
+Use these repository-local skills and agent for repeatable workflows:
+
+- `playwright-test-lifecycle`:
+  Use for implementing or maintaining Playwright tests end-to-end (plan, design, implementation, validation, and regression safety).
+- `sync-test-plan`:
+  Use for reconciling `test-plan.md` with implemented tests, coverage classification, tag normalization, and plan updates.
+- `static-code-analysis-typescript`:
+  Use for ESLint, Prettier, TypeScript checks, Husky/lint-staged, and CI quality-gate setup or audits.
+- `ui-test-automation` agent:
+  Use for orchestration of UI test requests; delegate execution workflow to `playwright-test-lifecycle` and plan reconciliation to `sync-test-plan`.
+
+Selection rule:
+
+- If work spans both test implementation and plan reconciliation, invoke `playwright-test-lifecycle` first, then `sync-test-plan`.
+
 ## Tests
 
 We use the [Playwright Test](https://playwright.dev/docs/test-intro) framework for all end-to-end tests. Before creating tests, review [playwright.config.ts](../playwright.config.ts) for the configured `baseURL`, timeouts, projects, and other settings.
