@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+
 import { createUser } from "../../src/models/User";
 import { LoginPage } from "../../src/pages/LoginPage";
 
@@ -13,5 +14,5 @@ test(
     await loginPage.login(user.email, user.password);
 
     await expect(page).toHaveURL(/profile\.html/, { timeout: 10_000 });
-  },
+  }
 );

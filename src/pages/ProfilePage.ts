@@ -1,4 +1,5 @@
 import { Locator, Page } from "@playwright/test";
+
 import { URLs } from "../urls";
 import { BasePage } from "./BasePage";
 
@@ -26,9 +27,7 @@ export class ProfilePage extends BasePage {
     });
     this.dangerZoneHeading = page.getByRole("heading", { name: "Danger Zone" });
 
-    this.logoutButton = page
-      .getByTestId("profile-header")
-      .getByTestId("logout-btn");
+    this.logoutButton = page.getByTestId("profile-header").getByTestId("logout-btn");
     this.staffFieldsManagementLink = page.getByTestId("nav-staff-fields");
     this.userIdValue = page.getByTestId("user-id");
     this.displayedNameValue = page.getByTestId("displayed-name");

@@ -6,3 +6,6 @@ test-results
 playwright/.auth
 .ai-temp
 .ai-outputs
+.github/skills
+.github/agents
+.github/prompts

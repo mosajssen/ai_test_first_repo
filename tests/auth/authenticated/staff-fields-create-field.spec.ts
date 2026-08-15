@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+
 import { ProfilePage } from "../../../src/pages/ProfilePage";
 import { StaffFieldsPage } from "../../../src/pages/StaffFieldsPage";
 
@@ -28,5 +29,5 @@ test(
     const createdField = staffFieldsPage.fieldListItem(fieldName);
     await expect(createdField).toBeVisible();
     await expect(createdField).toContainText(`${fieldArea} ha`);
-  },
+  }
 );

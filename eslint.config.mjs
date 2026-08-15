@@ -15,8 +15,8 @@ export default [
       "playwright/.auth/**",
       "package-lock.json",
       ".ai-temp/**",
-      ".ai-outputs/**"
-    ]
+      ".ai-outputs/**",
+    ],
   },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
@@ -24,30 +24,34 @@ export default [
     files: ["**/*.ts"],
     languageOptions: {
       globals: {
-        ...globals.node
+        ...globals.node,
       },
       parserOptions: {
-        warnOnUnsupportedTypeScriptVersion: false
-      }
+        warnOnUnsupportedTypeScriptVersion: false,
+      },
     },
     plugins: {
-      "simple-import-sort": simpleImportSort
+      "simple-import-sort": simpleImportSort,
     },
     rules: {
       "simple-import-sort/imports": "error",
-      "simple-import-sort/exports": "error"
-    }
+      "simple-import-sort/exports": "error",
+    },
   },
   {
     files: ["tests/**/*.ts"],
     ...eslintPluginPlaywright.configs["flat/recommended"],
+    rules: {
+      ...eslintPluginPlaywright.configs["flat/recommended"].rules,
+      "playwright/expect-expect": "off",
+    },
     settings: {
       playwright: {
         globalAliases: {
-          test: ["setup"]
-        }
-      }
-    }
+          test: ["setup"],
+        },
+      },
+    },
   },
-  configPrettier
+  configPrettier,
 ];

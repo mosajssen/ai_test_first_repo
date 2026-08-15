@@ -1,4 +1,5 @@
 import { Locator, Page } from "@playwright/test";
+
 import { URLs } from "../urls";
 import { BasePage } from "./BasePage";
 
@@ -27,9 +28,7 @@ export class StaffFieldsPage extends BasePage {
       name: "Animals (groups)",
       level: 3,
     });
-    this.addFieldButton = page
-      .getByRole("button", { name: "+ Add Field" })
-      .first();
+    this.addFieldButton = page.getByRole("button", { name: "+ Add Field" }).first();
     this.addFieldModalHeading = page.getByRole("heading", { name: "Add Field" });
     this.fieldNameInput = page.getByRole("textbox", { name: "Field Name" });
     this.fieldAreaInput = page.getByRole("spinbutton", { name: "Area (ha)" });
