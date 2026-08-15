@@ -1,8 +1,15 @@
 ---
 name: sync-test-plan
-description: Describe when to use this prompt
+description: Delegate test-plan reconciliation to the standalone sync-test-plan skill
 agent: agent
 ---
 
-Review the TEST_PLAN and verify that it matches the current implemented tests.
-If some requirements are only partially implemented, split them into multiple test cases and update the TEST_PLAN accordingly.
+Use the `sync-test-plan` skill to reconcile `test-plan.md` with the implemented Playwright tests.
+
+Expected behavior:
+
+- build a coverage matrix between plan rows and test files
+- classify scenarios as covered, partial, or missing
+- normalize tag mapping based on repository rules
+- split partially implemented requirements into explicit testable rows
+- update `test-plan.md` when requested, otherwise return a proposed diff
