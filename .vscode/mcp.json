@@ -3,7 +3,12 @@
     "microsoft/playwright-mcp": {
       "type": "stdio",
       "command": "npx",
-      "args": ["@playwright/mcp@latest", "--browser", "chromium"],
+      "args": [
+        "@playwright/mcp@latest",
+        "--isolated",
+        "--storage-state=C:/AI_PROJECTS/ai_test_first_repo/playwright/.auth/user.json"
+        //   ,"--headless"
+      ],
       "gallery": "https://api.mcp.github.com",
       "version": "0.0.1-seed"
     },

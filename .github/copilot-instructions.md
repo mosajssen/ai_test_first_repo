@@ -1,5 +1,10 @@
 # Copilot Instructions
 
+## Credentials Access
+
+- Never read `.env` files.
+- For AI credential access, always use `#file:.env.ai`.
+
 ## Commits
 
 Use [Conventional Commits](https://www.conventionalcommits.org/): `<type>[optional scope]: <description>`
