@@ -1,4 +1,5 @@
 import { Locator, Page } from "@playwright/test";
+
 import { URLs } from "../urls";
 import { BasePage } from "./BasePage";
 
@@ -50,9 +51,7 @@ export class StaffFieldsPage extends BasePage {
       name: "Add Animal",
     });
     this.addAnimalModal = page.locator("#addAnimalModal");
-    this.animalTypeSelect = page
-      .locator("#addAnimalForm")
-      .locator("#animalType");
+    this.animalTypeSelect = page.locator("#addAnimalForm").locator("#animalType");
     this.animalAmountInput = page
       .locator("#addAnimalForm")
       .getByRole("spinbutton", { name: "Amount" });
@@ -99,10 +98,13 @@ export class StaffFieldsPage extends BasePage {
   }
 
   animalListItem(type: string, amount: number) {
-    return this.page.locator("#animalsList li").filter({
-      has: this.page.getByText(type, { exact: true }),
-    }).filter({
-      hasText: amount.toString(),
-    });
+    return this.page
+      .locator("#animalsList li")
+      .filter({
+        has: this.page.getByText(type, { exact: true }),
+      })
+      .filter({
+        hasText: amount.toString(),
+      });
   }
 }

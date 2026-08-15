@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+
 import { ProfilePage } from "../../../src/pages/ProfilePage";
 import { StaffFieldsPage } from "../../../src/pages/StaffFieldsPage";
 
@@ -18,5 +19,5 @@ test(
     await expect.soft(staffFieldsPage.fieldsHeading).toBeVisible();
     await expect.soft(staffFieldsPage.staffHeading).toBeVisible();
     await expect.soft(staffFieldsPage.animalsHeading).toBeVisible();
-  },
+  }
 );

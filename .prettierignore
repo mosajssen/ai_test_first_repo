@@ -1,0 +1,11 @@
+node_modules
+package-lock.json
+playwright-report
+playwright-report-ci
+test-results
+playwright/.auth
+.ai-temp
+.ai-outputs
+.github/skills
+.github/agents
+.github/prompts

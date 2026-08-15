@@ -1,9 +1,6 @@
 import { expect, test } from "@playwright/test";
-import {
-  createEmptyUser,
-  createUniqueUser,
-  createUser,
-} from "../../src/models/User";
+
+import { createEmptyUser, createUniqueUser, createUser } from "../../src/models/User";
 import { DocsPage } from "../../src/pages/DocsPage";
 import { HomePage } from "../../src/pages/HomePage";
 import { LoginPage } from "../../src/pages/LoginPage";
@@ -20,54 +17,36 @@ test(
 
     await homePage.goto();
     await expect(page).toHaveTitle("Rolnopol");
-  },
+  }
 );
 
-test(
-  "login page is visible and loaded",
-  { tag: ["@smoke", "@auth"] },
-  async ({ page }) => {
-    const loginPage = new LoginPage(page);
+test("login page is visible and loaded", { tag: ["@smoke", "@auth"] }, async ({ page }) => {
+  const loginPage = new LoginPage(page);
 
-    await loginPage.goto();
-    await expect(loginPage.subtitle).toHaveText("User Login & Account Access");
-  },
-);
+  await loginPage.goto();
+  await expect(loginPage.subtitle).toHaveText("User Login & Account Access");
+});
 
-test(
-  "docs page is visible and loaded",
-  { tag: ["@smoke", "@navigation"] },
-  async ({ page }) => {
-    const docsPage = new DocsPage(page);
+test("docs page is visible and loaded", { tag: ["@smoke", "@navigation"] }, async ({ page }) => {
+  const docsPage = new DocsPage(page);
 
-    await docsPage.goto();
-    await expect(docsPage.subtitle).toHaveText(
-      "Rolnopol System Guide & API Reference",
-    );
-  },
-);
+  await docsPage.goto();
+  await expect(docsPage.subtitle).toHaveText("Rolnopol System Guide & API Reference");
+});
 
-test(
-  "swagger page is visible and loaded",
-  { tag: ["@smoke", "@navigation"] },
-  async ({ page }) => {
-    const swaggerPage = new SwaggerPage(page);
+test("swagger page is visible and loaded", { tag: ["@smoke", "@navigation"] }, async ({ page }) => {
+  const swaggerPage = new SwaggerPage(page);
 
-    await swaggerPage.goto();
-    await expect(page).toHaveTitle("Rolnopol - Swagger");
-  },
-);
+  await swaggerPage.goto();
+  await expect(page).toHaveTitle("Rolnopol - Swagger");
+});
 
-test(
-  "register page is visible and loaded",
-  { tag: ["@smoke", "@auth"] },
-  async ({ page }) => {
-    const registerPage = new RegisterPage(page);
+test("register page is visible and loaded", { tag: ["@smoke", "@auth"] }, async ({ page }) => {
+  const registerPage = new RegisterPage(page);
 
-    await registerPage.goto();
-    await expect(registerPage.subtitle).toHaveText("Create Your User Account");
-  },
-);
+  await registerPage.goto();
+  await expect(registerPage.subtitle).toHaveText("Create Your User Account");
+});
 
 test(
   "successful registration redirects to login page",
@@ -79,11 +58,9 @@ test(
     await registerPage.goto();
     await registerPage.register(user.email, user.password);
 
-    await expect(page.getByRole("alert")).toContainText(
-      "Registration successful!",
-    );
+    await expect(page.getByRole("alert")).toContainText("Registration successful!");
     await expect(page).toHaveURL(/login\.html/, { timeout: 10_000 });
-  },
+  }
 );
 
 test(
@@ -110,7 +87,7 @@ test(
     await profilePage.logout();
 
     await expect(page).toHaveURL(LoginPage.URL, { timeout: 10_000 });
-  },
+  }
 );
 
 test(
@@ -133,5 +110,5 @@ test(
     await expect.soft(staffFieldsPage.fieldsHeading).toBeVisible();
     await expect.soft(staffFieldsPage.staffHeading).toBeVisible();
     await expect.soft(staffFieldsPage.animalsHeading).toBeVisible();
-  },
+  }
 );

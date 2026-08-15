@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+
 import { ProfilePage } from "../../../src/pages/ProfilePage";
 import { StaffFieldsPage } from "../../../src/pages/StaffFieldsPage";
 
@@ -21,12 +22,12 @@ test(
     await expect(staffFieldsPage.addAnimalModalHeading).toBeVisible();
 
     await staffFieldsPage.addAnimal(animalType, animalAmount);
-    await expect(staffFieldsPage.addAnimalModal).not.toBeVisible();
+    await expect(staffFieldsPage.addAnimalModal).toBeHidden();
 
     await staffFieldsPage.searchAnimalByType(animalType);
 
     const createdAnimal = staffFieldsPage.animalListItem(animalType, animalAmount);
     await expect(createdAnimal).toBeVisible();
     await expect(createdAnimal).toContainText(animalAmount.toString());
-  },
+  }
 );
